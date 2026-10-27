@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshBox — Healthy Nutrition Meal Delivery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="#top">
+      <img src="images/logo.svg" alt="FreshBox logo" width="40" height="40">
+      <span>FreshBox</span>
+    </a>
+
+    <input type="checkbox" id="menu-toggle" aria-label="Toggle menu">
+    <label class="burger" for="menu-toggle" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="#plans">Meal Lines</a></li>
+        <li><a href="#plans">Sample Menu</a></li>
+        <li><a href="#footer">Delivery Zones</a></li>
+        <li><a href="#footer">Reviews</a></li>
+      </ul>
+      <a class="btn" href="#order">Order a Meal Plan</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <h1>Right and Delicious Nutrition Delivered to Your Home</h1>
+      <p>Fresh, balanced meals cooked daily and delivered to your door.</p>
+      <a class="btn btn-cta" href="#order">Calculate my plan</a>
+    </section>
+
+    <section class="plans" id="plans">
+      <h2>Our Meal Lines</h2>
+      <ul class="grid">
+        <li>
+          <article class="card">
+            <h3>Weight Loss</h3>
+            <p class="kcal">1200 kcal</p>
+            <p>Light and filling meals to reduce weight safely.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <h3>Balance</h3>
+            <p class="kcal">1600 kcal</p>
+            <p>A complete daily diet to keep your shape and energy.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <h3>Mass Gain</h3>
+            <p class="kcal">2500 kcal</p>
+            <p>High-protein meals for muscle growth and recovery.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <h3>Vegan</h3>
+            <p class="kcal">Plant-based</p>
+            <p>100% plant-based menu without animal products.</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section class="order" id="order">
+      <h2>Order Configuration</h2>
+      <form action="#" method="post">
+        <label>
+          Goal Setting
+          <select name="goal" required>
+            <option value="">Choose your goal</option>
+            <option value="lose">Lose Weight</option>
+            <option value="gain">Gain Mass</option>
+          </select>
+        </label>
+
+        <label>
+          Subscription Duration
+          <select name="duration" required>
+            <option value="">Choose duration</option>
+            <option value="7">1 week</option>
+            <option value="14">2 weeks</option>
+            <option value="30">1 month</option>
+          </select>
+        </label>
+
+        <label>
+          Delivery Address
+          <input type="text" name="address" placeholder="Street, house, apartment" minlength="5" required>
+        </label>
+
+        <label>
+          Phone
+          <input type="tel" name="phone" placeholder="+7 700 000 00 00" pattern="[+0-9 ()\-]{10,18}" required>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </label>
+
+        <button type="submit" class="btn">Send Order</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <section>
+      <h2>Certificates</h2>
+      <p>Products are certified and conform to food safety standards.</p>
+    </section>
+
+    <section>
+      <h2>Contactless Delivery</h2>
+      <p>Courier leaves the order at your door and notifies you by phone.</p>
+    </section>
+
+    <nav aria-label="Footer navigation">
+      <ul>
+        <li><a href="#plans">Meal Lines</a></li>
+        <li><a href="#order">Order</a></li>
+        <li><a href="#top">Back to top</a></li>
+      </ul>
+    </nav>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-toggle">
+      Dark theme
+    </label>
+
+    <p class="legal">&copy; 2026 FreshBox. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
