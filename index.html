@@ -3,216 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FreshBox: healthy nutrition meal delivery with plans for weight loss, balance, mass gain and vegan diets.">
-  <title>FreshBox: Healthy Nutrition Meal Delivery</title>
+  <title>FreshBox — Healthy Nutrition Meal Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body id="top">
+<body>
 
-  <!-- Theme switch (pure CSS): radios are hidden, labels live in the footer -->
-  <input type="radio" name="theme" id="theme-light" checked hidden>
-  <input type="radio" name="theme" id="theme-dark" hidden>
-
-  <!-- 1. HEADER / NAV -->
-  <header>
+  <header class="site-header">
     <a class="logo" href="#top">
-      <img src="images/logo.svg" alt="">
+      <img src="images/logo.svg" alt="" width="28" height="28">
       <span>FreshBox</span>
     </a>
 
-    <input type="checkbox" id="burger" hidden>
-    <label for="burger" class="burger" aria-label="Open or close menu"></label>
+    <input type="checkbox" id="menu-toggle" aria-label="Toggle menu">
+    <label class="burger" for="menu-toggle" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
 
-    <nav aria-label="Main navigation">
+    <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="#plans">Meal Lines</a></li>
-        <li><a href="#menu">Sample Menu</a></li>
-        <li><a href="#zones">Delivery Zones</a></li>
-        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#plans">Sample Menu</a></li>
+        <li><a href="#footer">Delivery Zones</a></li>
+        <li><a href="#footer">Reviews</a></li>
       </ul>
+      <a class="btn" href="#order">Order a Meal Plan</a>
     </nav>
-
-    <a class="btn" href="#order">Order a Meal Plan</a>
   </header>
 
-  <main>
+  <main id="top">
 
-    <!-- 2. HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-      <p class="eyebrow">Fresh daily &middot; Chef-prepared</p>
-      <h1 id="hero-title">Right and Delicious Nutrition Delivered to Your Home</h1>
-      <p class="lead">Chef-prepared meals. Balanced by nutritionists. More time for the things that make you feel good.</p>
-      <a class="btn" href="#order">Calculate &rarr;</a>
-      <ul class="perks">
-        <li>Contactless delivery</li>
-        <li>Cancel anytime</li>
-        <li>Fresh every day</li>
+    <section class="hero">
+      <header class="hero-text">
+        <p class="eyebrow">Good food. Better everyday.</p>
+        <h1>Right and Delicious Nutrition Delivered to Your Home</h1>
+        <p class="lead">Meals that fit your goals. More time for your life. Find your balance, one delicious box at a time.</p>
+        <a class="btn btn-cta" href="#order">Calculate my plan <span aria-hidden="true">↗</span></a>
+      </header>
+      <ul class="hero-meta">
+        <li>Your goal. Your schedule. Your FreshBox.</li>
+        <li class="pill">A little inspiration for your next box</li>
       </ul>
     </section>
 
-    <!-- 3. GRID: tariff cards -->
-    <section id="plans" class="plans" aria-labelledby="plans-title">
-      <hgroup>
-        <h2 id="plans-title">Good food. Your kind of balance.</h2>
-        <p>Four programs, one simple rule: you eat well and we do the cooking.</p>
-      </hgroup>
+    <section class="plans" id="plans">
+      <header class="section-head">
+        <p class="eyebrow">Find your fresh</p>
+        <h2>A meal line for your kind of life.</h2>
+        <p class="sub">Choose your direction. We'll bring the delicious part.</p>
+        <p class="aside">4 ways to feel good</p>
+      </header>
 
-      <article>
-        <figure><img src="images/weight-loss.webp" alt="Light meals from the Weight Loss program" loading="lazy"></figure>
-        <h3>Weight Loss</h3>
-        <p class="kcal">1200 kcal</p>
-        <p>Light, filling meals with lean protein and plenty of vegetables.</p>
-        <a class="more" href="#order">Choose plan &rarr;</a>
-      </article>
-
-      <article>
-        <figure><img src="images/balance.webp" alt="Everyday meals from the Balance program" loading="lazy"></figure>
-        <h3>Balance</h3>
-        <p class="kcal">1600 kcal</p>
-        <p>The everyday plan: balanced proteins, carbs and healthy fats.</p>
-        <a class="more" href="#order">Choose plan &rarr;</a>
-      </article>
-
-      <article>
-        <figure><img src="images/mass-gain.webp" alt="Hearty meals from the Mass Gain program" loading="lazy"></figure>
-        <h3>Mass Gain</h3>
-        <p class="kcal">2500 kcal</p>
-        <p>High-energy, protein-rich meals to support training and growth.</p>
-        <a class="more" href="#order">Choose plan &rarr;</a>
-      </article>
-
-      <article>
-        <figure><img src="images/vegan.webp" alt="Plant-based dishes from the Vegan program" loading="lazy"></figure>
-        <h3>Vegan</h3>
-        <p class="kcal">Plant-based menu</p>
-        <p>Fully plant-based menu with complete, varied nutrition.</p>
-        <a class="more" href="#order">Choose plan &rarr;</a>
-      </article>
-    </section>
-
-    <!-- 4. FEEDBACK FORM: order configuration -->
-    <section id="order" class="order" aria-labelledby="order-title">
-      <hgroup>
-        <p class="eyebrow">Your first step</p>
-        <h2 id="order-title">Configure your order</h2>
-        <p>A little about you, a plan that fits. Tell us what you need and we will take care of the cooking.</p>
-      </hgroup>
-
-      <ul class="checks">
-        <li>Selected ingredients, freshly prepared</li>
-        <li>Nutritionist-designed weekly menus</li>
-        <li>Flexible schedule, no lock-in</li>
+      <ul class="grid">
+        <li>
+          <article class="card">
+            <img src="images/card-1.jpg" alt="Weight loss meal bowl" width="800" height="600">
+            <p class="tag">Light &amp; satisfying</p>
+            <h3>Weight Loss (1200 kcal)</h3>
+            <p>Lighter portions, full flavor.</p>
+            <a class="more" href="#order">Explore this line <span aria-hidden="true">↗</span></a>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <img src="images/card-2.jpg" alt="Balanced meal with salmon" width="800" height="600">
+            <p class="tag">Everyday balance</p>
+            <h3>Balance (1600 kcal)</h3>
+            <p>A delicious rhythm for your day.</p>
+            <a class="more" href="#order">Explore this line <span aria-hidden="true">↗</span></a>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <img src="images/card-3.jpg" alt="Mass gain meal with meat" width="800" height="600">
+            <p class="tag">Fuel your ambition</p>
+            <h3>Mass Gain (2500 kcal)</h3>
+            <p>Hearty meals for bigger goals.</p>
+            <a class="more" href="#order">Explore this line <span aria-hidden="true">↗</span></a>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <img src="images/card-4.jpg" alt="Vegan plant-based bowl" width="800" height="600">
+            <p class="tag">Plant powered</p>
+            <h3>Vegan</h3>
+            <p>All plants. All kinds of delicious.</p>
+            <a class="more" href="#order">Explore this line <span aria-hidden="true">↗</span></a>
+          </article>
+        </li>
       </ul>
 
-      <p class="help">Not sure which plan to choose? <a href="mailto:hello@freshbox.com">hello@freshbox.com</a></p>
+      <p class="note">Calorie values refer to daily plans. Choose a plan that suits your individual nutritional needs.</p>
+    </section>
+
+    <section class="order" id="order">
+      <header class="order-intro">
+        <p class="eyebrow">Let's make it yours</p>
+        <h2>Your fresh start is a few details away.</h2>
+        <p>Tell us what you're working toward and where to deliver. We'll help you find your meal plan.</p>
+        <ol class="steps">
+          <li><span>01</span> Choose your goal</li>
+          <li><span>02</span> Pick your subscription</li>
+          <li><span>03</span> Make room for good food</li>
+        </ol>
+      </header>
 
       <form action="#" method="post">
-
         <fieldset>
-          <legend>Your meal plan</legend>
-
-          <label>Goal
-            <select name="goal" required>
-              <option value="">Choose a goal</option>
-              <option value="lose">Lose Weight</option>
-              <option value="gain">Gain Mass</option>
-            </select>
+          <legend>Goal Setting</legend>
+          <label class="choice">
+            <input type="radio" name="goal" value="lose" checked required> Lose Weight
           </label>
-
-          <label>Subscription Duration
-            <select name="duration" required>
-              <option value="">Choose duration</option>
-              <option value="7">1 week</option>
-              <option value="14">2 weeks</option>
-              <option value="30">1 month</option>
-              <option value="90">3 months</option>
-            </select>
+          <label class="choice">
+            <input type="radio" name="goal" value="gain" required> Gain Mass
           </label>
         </fieldset>
 
-        <fieldset>
-          <legend>Where &amp; when</legend>
-
-          <label>First delivery
-            <input type="date" name="first-delivery" required>
-          </label>
-
-          <label>Delivery window
-            <select name="window" required>
-              <option value="">Choose a time</option>
-              <option value="morning">7:00 - 9:00 AM</option>
-              <option value="day">12:00 - 2:00 PM</option>
-              <option value="evening">6:00 - 8:00 PM</option>
-            </select>
-          </label>
-
-          <label>Delivery Address
-            <input type="text" name="address" placeholder="Street, house, apartment" autocomplete="street-address" required>
-          </label>
-        </fieldset>
-
-        <fieldset>
-          <legend>How to reach you</legend>
-
-          <label>Full name
-            <input type="text" name="name" placeholder="Your full name" autocomplete="name" required>
-          </label>
-
-          <label>Phone
-            <input type="tel" name="phone" placeholder="+7 700 000 00 00" pattern="[0-9+ ()\-]{10,}" autocomplete="tel" required>
-            <small class="error">Enter a valid phone number, for example +7 700 000 00 00</small>
-          </label>
-
-          <label>Email
-            <input type="email" name="email" placeholder="name@mail.com" autocomplete="email" required>
-            <small class="error">Enter a valid email, for example name@mail.com</small>
-          </label>
-        </fieldset>
-
-        <label class="agree">
-          <input type="checkbox" name="agree" required>
-          <span>I agree to the Terms of Service and Privacy Policy</span>
+        <label>
+          Subscription Duration
+          <select name="duration" required>
+            <option value="5">1 week · 5 days</option>
+            <option value="10">2 weeks · 10 days</option>
+            <option value="20">1 month · 20 days</option>
+          </select>
         </label>
 
-        <button type="submit" class="btn">Order a Meal Plan &rarr;</button>
-        <p class="note">Contactless delivery. No payment until your menu is confirmed.</p>
+        <label>
+          Delivery Address
+          <input type="text" name="address" placeholder="Street, building, apartment" minlength="5" required>
+        </label>
+
+        <label>
+          Phone
+          <input type="tel" name="phone" placeholder="Your phone number" pattern="[+0-9 ()\-]{10,18}" required>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </label>
+
+        <button type="submit" class="btn btn-cta">Calculate my plan <span aria-hidden="true">↗</span></button>
+        <p class="legal-note">By submitting, you agree to be contacted about your plan. See our Privacy Policy for how we use your details.</p>
       </form>
     </section>
 
   </main>
 
-  <!-- 5. FOOTER -->
-  <footer>
-    <a class="logo" href="#top">
-      <img src="images/logo.svg" alt="">
-      <span>FreshBox</span>
-    </a>
-    <p>Eat well. Live fully.</p>
-
-    <nav aria-label="Footer navigation">
-      <ul>
-        <li><a href="#plans">Meal Lines</a></li>
-        <li><a href="#menu">Sample Menu</a></li>
-        <li><a href="#zones">Delivery Zones</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-      </ul>
-    </nav>
-
-    <section class="legal" aria-label="Legal information">
-      <ul>
-        <li><a href="#certificates">Certificates of conformity</a></li>
-        <li><a href="#contactless">Contactless delivery rules</a></li>
-        <li><a href="#privacy">Privacy Policy</a></li>
-        <li><a href="#terms">Terms of Service</a></li>
-      </ul>
-      <p>&copy; 2026 FreshBox. All rights reserved.</p>
+  <footer class="site-footer" id="footer">
+    <section class="brand">
+      <a class="logo" href="#top">
+        <img src="images/logo.svg" alt="" width="28" height="28">
+        <span>FreshBox</span>
+      </a>
+      <p>Eat well. Live fully. We'll bring the box.</p>
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="#plans">Meal Lines</a></li>
+          <li><a href="#plans">Sample Menu</a></li>
+          <li><a href="#footer">Delivery Zones</a></li>
+          <li><a href="#footer">Reviews</a></li>
+        </ul>
+      </nav>
     </section>
 
-    <fieldset class="theme-switch">
-      <legend>Theme</legend>
-      <label for="theme-light">Light</label>
-      <label for="theme-dark">Dark</label>
-    </fieldset>
+    <section>
+      <h2>Contactless delivery rules</h2>
+      <p>Add a safe drop-off spot to your address. Keep your phone nearby for arrival updates. Collect your box promptly and refrigerate your items.</p>
+      <a class="more" href="#footer">Check delivery zones <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <section>
+      <h2>Certificates &amp; documentation</h2>
+      <p class="tag">Pending verification</p>
+      <p>Supplier certificates and food-safety documentation will be published once supplied and verified.</p>
+    </section>
+
+    <p class="legal">&copy; 2026 FreshBox. A fresher everyday.</p>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="theme-toggle">
+      Dark theme
+    </label>
   </footer>
 
 </body>

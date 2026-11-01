@@ -1,91 +1,111 @@
-/* ==========================================================
-   FreshBox: Healthy Nutrition Meal Delivery
-   Mobile First. Relative units only (rem, em, %, vh).
-   The only pixel value in this file is the media query below.
-   ========================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-/* ---------- Theme tokens ---------- */
 :root {
-  --bg: #ffffff;
-  --text: #1a1a1a;
-  --muted: #4b5563;
-  --card: #f1f5f2;
-  --border: #767676;
-  --accent: #1f7a45;
-  --on-accent: #ffffff;
-  --good: #1f7a45;
-  --bad: #b91c1c;
+  --bg: #f6f9f3;
+  --text: #1a2a1f;
+  --muted: #5d6e62;
+  --card: #ffffff;
+  --accent: #2e8b57;
+  --accent-text: #ffffff;
+  --border: #dbe7dc;
+  --panel: #e6f0e4;
+  --footer-bg: #f6f9f3;
+  --gutter: max(5%, calc((100% - 80rem) / 2));
 }
 
-/* Dark theme: switched by the radio buttons in the footer */
-:root:has(#theme-dark:checked) {
-  --bg: #121212;
-  --text: #f5f5f5;
-  --muted: #b8c0c8;
-  --card: #1e1e1e;
-  --border: #8a8a8a;
-  --accent: #4ade80;
-  --on-accent: #07210f;
-  --good: #4ade80;
-  --bad: #f87171;
+body:has(#theme-toggle:checked) {
+  --bg: #0e1a13;
+  --text: #e8f3ea;
+  --muted: #9db3a3;
+  --card: #16251c;
+  --accent: #3a9d68;
+  --accent-text: #ffffff;
+  --border: #2a3f31;
+  --panel: #1a2b22;
+  --footer-bg: #0e1a13;
 }
 
-html { scroll-behavior: smooth; font-size: 100%; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 1rem;
+  overflow-x: hidden;
 }
 
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-.burger:focus-visible {
-  outline: 0.1875rem solid var(--accent);
-  outline-offset: 0.1875rem;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-h1, h2, h3 { line-height: 1.2; }
-h2 { font-size: 1.75rem; }
+ul, ol {
+  list-style: none;
+}
 
-.eyebrow {
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  line-height: 1.15;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+.eyebrow,
+.tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
 }
 
 /* ---------- Buttons ---------- */
-.btn,
-button {
-  display: inline-block;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   background: var(--accent);
-  color: var(--on-accent);
-  padding: 0.9rem 1.5rem;
-  border: 0;
-  border-radius: 1rem;
+  color: var(--accent-text);
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 0.75rem;
   font: inherit;
+  font-size: 0.9rem;
   font-weight: 600;
-  text-align: center;
   cursor: pointer;
 }
-.btn:hover,
-button:hover { filter: brightness(1.08); }
 
-/* ==========================================================
-   1. HEADER (mobile: button on top, logo + burger below)
-   ========================================================== */
-header {
+.btn:hover {
+  opacity: 0.88;
+}
+
+.more {
+  display: inline-flex;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ---------- Header (mobile first) ---------- */
+.site-header {
   position: sticky;
   top: 0;
   z-index: 10;
@@ -93,242 +113,450 @@ header {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem 1rem;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem var(--gutter);
   background: var(--bg);
-  border-bottom: 0.0625rem solid var(--card);
 }
-
-header > .btn { order: -1; width: 100%; }
 
 .logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: 600;
+  font-size: 1.05rem;
 }
-.logo img { height: 2rem; width: auto; }
 
-/* Burger icon drawn with gradients: no extra elements */
+#menu-toggle {
+  display: none;
+}
+
 .burger {
-  width: 1.75rem;
-  height: 1.375rem;
-  cursor: pointer;
-  background:
-    linear-gradient(var(--text), var(--text)) top / 100% 0.1875rem no-repeat,
-    linear-gradient(var(--text), var(--text)) center / 100% 0.1875rem no-repeat,
-    linear-gradient(var(--text), var(--text)) bottom / 100% 0.1875rem no-repeat;
-}
-
-nav { display: none; width: 100%; }
-#burger:checked ~ nav { display: block; }
-header nav ul { display: flex; flex-direction: column; gap: 0.75rem; padding: 0.5rem 0; }
-header nav a { display: block; padding: 0.25rem 0; font-weight: 600; }
-
-/* ==========================================================
-   2. HERO
-   ========================================================== */
-.hero {
-  min-height: 85vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;     /* CTA sits in the lower part = thumb zone */
-  align-items: flex-start;
+  gap: 0.25rem;
+  cursor: pointer;
+  padding: 0.6rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.6rem;
+  background: var(--card);
+}
+
+.burger span {
+  display: block;
+  width: 1.1rem;
+  height: 0.125rem;
+  background: var(--text);
+  border-radius: 1rem;
+}
+
+.main-nav {
+  display: none;
+  flex-direction: column;
+  width: 100%;
   gap: 1rem;
-  padding: 2rem 1rem 2.5rem;
+  padding: 1rem 0;
+}
+
+.main-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.site-header:has(#menu-toggle:checked) .main-nav {
+  display: flex;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 34rem;
+  margin: 0 var(--gutter);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
   color: #ffffff;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.78)),
-    url("images/hero.webp") center / cover no-repeat #14532d;
+    linear-gradient(rgba(8, 20, 13, 0.7), rgba(8, 20, 13, 0.7)),
+    url("images/hero.jpg") center / cover no-repeat;
 }
-.hero .eyebrow { color: #86efac; }
-.hero h1 { font-size: 2rem; }
-.hero .lead { font-size: 1.0625rem; max-width: 36rem; }
-.hero .btn { width: 100%; }
-.perks { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.875rem; }
-.perks li::before { content: "\2713\00a0"; color: #86efac; }
 
-/* ==========================================================
-   3. GRID: tariff cards (1 column on mobile)
-   ========================================================== */
+.hero .eyebrow {
+  color: #cfe8d6;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  font-size: 2.1rem;
+  font-weight: 300;
+  max-width: 30rem;
+}
+
+.hero .lead {
+  max-width: 24rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #e3eee6;
+}
+
+.hero .btn-cta {
+  margin-top: 1.5rem;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: #dcebe0;
+}
+
+.pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ---------- Meal lines ---------- */
 .plans {
+  padding: 3rem var(--gutter);
+}
+
+.section-head {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-head .sub,
+.section-head .aside {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  padding: 2.5rem 1rem;
 }
-.plans hgroup { display: grid; gap: 0.5rem; margin-bottom: 0.5rem; }
-.plans hgroup p { color: var(--muted); }
 
-article {
-  display: grid;
-  grid-template-columns: 32% 1fr;       /* mobile: photo left, text right */
-  gap: 0.25rem 1rem;
-  align-content: start;
-  padding: 1rem;
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  padding: 0.6rem 0.6rem 1.1rem;
   background: var(--card);
-  border-radius: 1.25rem;
-}
-article figure {
-  grid-row: 1 / span 4;
-  overflow: hidden;
+  border: 0.0625rem solid var(--border);
   border-radius: 1rem;
-  background: var(--border);
 }
-article figure img { width: 100%; height: 100%; min-height: 6rem; object-fit: cover; }
-article h3 { font-size: 1.25rem; }
-article .kcal { font-weight: 700; color: var(--accent); }
-article p:not(.kcal) { color: var(--muted); font-size: 0.9375rem; }
-.more { font-weight: 600; color: var(--accent); }
 
-/* ==========================================================
-   4. FEEDBACK FORM (validation in pure CSS)
-   ========================================================== */
+.card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.card > :not(img) {
+  padding-inline: 0.5rem;
+}
+
+.card h3 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.card p:not(.tag) {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.card .more {
+  margin-top: 0.4rem;
+}
+
+.note {
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ---------- Order form ---------- */
 .order {
   display: grid;
-  gap: 1.25rem;
-  padding: 2.5rem 1rem;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin: 0 var(--gutter) 3rem;
+  padding: 1.75rem 1.5rem;
+  background: var(--panel);
+  border-radius: 1.5rem;
 }
-.order hgroup { display: grid; gap: 0.5rem; }
-.order hgroup p:last-child { color: var(--muted); }
 
-.checks { display: grid; gap: 0.5rem; }
-.checks li::before { content: "\2713\00a0"; color: var(--accent); font-weight: 700; }
-.help { color: var(--muted); }
-.help a { color: var(--accent); font-weight: 600; text-decoration: underline; }
+.order-intro {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.order-intro p:not(.eyebrow) {
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 24rem;
+}
+
+.steps {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.steps span {
+  display: inline-block;
+  min-width: 1.8rem;
+  margin-right: 0.4rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.4rem;
+  background: var(--card);
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-align: center;
+}
 
 form {
-  display: grid;
-  gap: 1.25rem;
-  padding: 1.25rem;
-  background: var(--card);
-  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
 }
-fieldset { display: grid; gap: 0.875rem; border: 0; }
-legend { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; }
 
-label { display: grid; gap: 0.375rem; font-weight: 600; font-size: 0.9375rem; }
+form label,
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+}
 
-input:not([type="checkbox"]),
-select {
+fieldset {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+legend {
   width: 100%;
-  padding: 0.8rem 1rem;
-  font: inherit;
-  color: var(--text);
-  background: var(--bg);
-  border: 0.125rem solid var(--border);
-  border-radius: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
-::placeholder { color: var(--muted); opacity: 1; }
 
-/* Validation states: CSS only */
-input:not([type="checkbox"]):user-valid,
-select:user-valid { border-color: var(--good); }
-input:not([type="checkbox"]):user-invalid,
-select:user-invalid { border-color: var(--bad); }
-
-/* Fallback for browsers without :user-valid */
-input:not([type="checkbox"]):valid:not(:placeholder-shown) { border-color: var(--good); }
-input:not([type="checkbox"]):invalid:not(:placeholder-shown) { border-color: var(--bad); }
-
-.error { display: none; color: var(--bad); font-weight: 400; }
-input:user-invalid + .error { display: block; }
-input:invalid:not(:placeholder-shown) + .error { display: block; }
-
-.agree { display: flex; align-items: flex-start; gap: 0.75rem; font-weight: 400; }
-.agree input { width: 1.25rem; height: 1.25rem; flex: none; accent-color: var(--accent); }
-
-.note { text-align: center; font-size: 0.875rem; color: var(--muted); }
-
-/* ==========================================================
-   5. FOOTER + theme switch
-   ========================================================== */
-footer {
-  display: grid;
-  gap: 1.25rem;
-  padding: 2rem 1rem;
-  background: var(--card);
-}
-footer nav { display: block; width: auto; }
-footer nav ul,
-.legal ul { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
-footer a:hover { text-decoration: underline; }
-.legal { display: grid; gap: 0.75rem; font-size: 0.875rem; color: var(--muted); }
-
-.theme-switch { display: flex; gap: 0.5rem; align-items: center; }
-.theme-switch legend { margin: 0 0.75rem 0 0; font-size: 0.875rem; }
-.theme-switch { flex-wrap: wrap; }
-.theme-switch label {
-  padding: 0.5rem 1.25rem;
+form label.choice {
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 0.9rem;
   border: 0.0625rem solid var(--border);
-  border-radius: 999rem;
+  border-radius: 0.6rem;
+  background: var(--card);
+  font-weight: 500;
   cursor: pointer;
 }
-:root:has(#theme-light:checked) label[for="theme-light"],
-:root:has(#theme-dark:checked) label[for="theme-dark"] {
-  background: var(--accent);
+
+form label.choice:has(input:checked) {
   border-color: var(--accent);
-  color: var(--on-accent);
 }
 
-/* ==========================================================
-   DESKTOP
-   ========================================================== */
+input[type="radio"] {
+  accent-color: var(--accent);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 400;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.6rem;
+  background: var(--card);
+  color: var(--text);
+}
+
+/* Pure CSS validation (after the user interacts with the field) */
+input:user-invalid,
+select:user-invalid {
+  border-color: #d9534f;
+}
+
+input:user-valid,
+select:user-valid {
+  border-color: var(--accent);
+}
+
+input:focus,
+select:focus {
+  outline: 0.125rem solid var(--accent);
+  outline-offset: 0.0625rem;
+}
+
+form .btn-cta {
+  margin-top: 0.4rem;
+  padding: 0.9rem 1.2rem;
+}
+
+.legal-note {
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem var(--gutter);
+  background: var(--footer-bg);
+  border-top: 0.0625rem solid var(--border);
+  font-size: 0.8rem;
+}
+
+.site-footer h2 {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.site-footer p {
+  color: var(--muted);
+}
+
+.site-footer .brand {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.site-footer nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  font-weight: 500;
+}
+
+.site-footer .more {
+  margin-top: 0.6rem;
+}
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.theme-switch input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--accent);
+}
+
+.legal {
+  font-size: 0.7rem;
+}
+
+/* ---------- Desktop ---------- */
 @media (min-width: 1024px) {
-
-  /* Header: one row, no burger */
-  header { flex-wrap: nowrap; padding: 1rem max(5%, calc((100% - 80rem) / 2)); }
-  header > .btn { order: 0; width: auto; }
-  .burger { display: none; }
-  nav,
-  #burger:checked ~ nav { display: block; width: auto; }
-  header nav ul { flex-direction: row; gap: 2rem; padding: 0; }
-  header nav { margin-inline: auto; }
-
-  /* Hero */
-  .hero {
-    min-height: 70vh;
-    justify-content: center;
-    padding: 4rem max(5%, calc((100% - 80rem) / 2));
+  h2 {
+    font-size: 2rem;
   }
-  .hero h1 { font-size: 3.5rem; max-width: 18ch; }
-  .hero .btn { width: auto; }
 
-  /* Grid: 4 columns */
-  .plans {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    padding: 4rem max(5%, calc((100% - 80rem) / 2));
+  .burger {
+    display: none;
   }
-  .plans hgroup { grid-column: 1 / -1; }
-  .plans h2 { font-size: 2.25rem; }
 
-  article { grid-template-columns: 1fr; gap: 0.5rem; }
-  article figure { grid-row: auto; aspect-ratio: 4 / 3; }
-
-  /* Form: text on the left, card on the right */
-  .order {
-    grid-template-columns: 1fr 1.4fr;
-    column-gap: 4rem;
-    align-content: start;
-    padding: 4rem max(5%, calc((100% - 80rem) / 2));
-  }
-  .order hgroup,
-  .checks,
-  .help { grid-column: 1; }
-  .order h2 { font-size: 2.25rem; }
-  form { grid-column: 2; grid-row: 1 / span 3; padding: 2rem; }
-
-  /* Footer */
-  footer {
-    grid-template-columns: 1fr auto auto;
+  .main-nav {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    column-gap: 2rem;
-    padding: 2.5rem max(5%, calc((100% - 80rem) / 2));
+    width: auto;
+    gap: 2rem;
+    padding: 0;
   }
-  footer > p { grid-column: 1; }
-  footer nav { grid-column: 2; grid-row: 1 / span 2; }
-  .theme-switch { grid-column: 3; grid-row: 1 / span 2; }
-  .legal { grid-column: 1 / -1; grid-template-columns: 1fr auto; align-items: center; }
+
+  .main-nav ul {
+    flex-direction: row;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+  }
+
+  .hero {
+    min-height: 30rem;
+    padding: 2.5rem 3rem 1.75rem;
+    background:
+      linear-gradient(90deg, rgba(8, 20, 13, 0.82) 0%, rgba(8, 20, 13, 0.45) 60%, rgba(8, 20, 13, 0.2) 100%),
+      url("images/hero.jpg") center / cover no-repeat;
+  }
+
+  .hero h1 {
+    font-size: 3.2rem;
+  }
+
+  .hero .lead {
+    font-size: 0.95rem;
+  }
+
+  .section-head {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .section-head .eyebrow,
+  .section-head h2,
+  .section-head .sub {
+    grid-column: 1;
+  }
+
+  .section-head .aside {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .order {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 2.5rem 3rem;
+  }
+
+  .site-footer {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    align-items: start;
+    gap: 2rem 3rem;
+  }
+
+  .legal {
+    grid-column: 1 / 3;
+    align-self: center;
+  }
+
+  .theme-switch {
+    justify-self: end;
+  }
 }
